@@ -1,0 +1,202 @@
+:root{
+  --ink:#14070c;
+  --wine:#2a0c17;
+  --wine-2:#3a1020;
+  --gold:#e6cfa0;
+  --gold-deep:#b8935a;
+  --gold-hi:#f6e8c6;
+  --ivory:#f3e9d8;
+  --silver:#d9dce0;
+  --muted:#c9b9a4;
+  --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Jost",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--ivory);
+  font-family:var(--display);
+  font-size:1.2rem;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+section{padding:clamp(4rem,10vw,7.5rem) 0;text-align:center}
+h1,h2{font-weight:500;line-height:1.15}
+h2{font-size:clamp(1.9rem,5vw,3rem)}
+
+/* gold shimmer text */
+.gold{
+  background:linear-gradient(110deg,var(--gold-deep) 0%,var(--gold-hi) 35%,var(--gold) 50%,var(--gold-hi) 65%,var(--gold-deep) 100%);
+  background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer 9s ease-in-out infinite alternate;
+}
+@keyframes shimmer{from{background-position:0% 0}to{background-position:100% 0}}
+
+/* ornament divider */
+.orn{display:flex;align-items:center;justify-content:center;gap:14px;margin:1.6rem auto}
+.orn::before,.orn::after{content:"";width:min(90px,22vw);height:1px;background:linear-gradient(90deg,transparent,var(--gold-deep))}
+.orn::after{transform:scaleX(-1)}
+.orn i{width:9px;height:9px;border:1px solid var(--gold);transform:rotate(45deg)}
+
+/* mandala */
+.mandala{position:absolute;left:50%;top:50%;width:min(130vw,980px);aspect-ratio:1;transform:translate(-50%,-50%);opacity:.22;pointer-events:none}
+.spin{animation:spin 260s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* 1. Welcome */
+.welcome{
+  position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden;text-align:center;
+  background:radial-gradient(ellipse at 50% 40%,var(--wine-2) 0%,var(--wine) 45%,var(--ink) 100%);
+  padding:2rem 1.5rem;
+}
+.welcome::before,.welcome::after{content:"";position:absolute;pointer-events:none;border:1px solid rgba(230,207,160,.45)}
+.welcome::before{inset:14px}
+.welcome::after{inset:24px;border-color:rgba(230,207,160,.2)}
+.welcome-inner{position:relative;z-index:1}
+.welcome h1{font-size:clamp(3.4rem,13vw,8rem);font-style:italic;font-weight:400;margin:.6rem 0 .2rem;padding:0 .1em .1em}
+.welcome p{color:var(--muted);letter-spacing:.04em}
+.welcome .lede{font-size:clamp(1.25rem,3.5vw,1.8rem);font-style:italic;color:var(--ivory)}
+.welcome .when{margin-top:1.6rem;font-family:var(--sans);font-weight:300;font-size:.95rem;letter-spacing:.14em;color:var(--gold)}
+.cue{position:absolute;bottom:2.6rem;left:50%;translate:-50% 0;color:var(--gold);animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(7px)}}
+
+/* page-load sequence: the one orchestrated moment */
+.seq{opacity:0;animation:rise 1.1s cubic-bezier(.2,.7,.2,1) var(--d,0s) forwards}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* 2. Milestone */
+.milestone{background:linear-gradient(var(--ink),var(--wine) 50%,var(--ink))}
+.silver{font-family:var(--sans);font-weight:300;font-size:1rem;letter-spacing:.2em;color:var(--silver)}
+.big25{display:flex;flex-direction:column;align-items:center;margin:.4rem 0 1.4rem;line-height:.85}
+.big25 .gold{font-size:clamp(9rem,34vw,18rem);font-weight:500;padding:.05em .1em}
+.big25 .years{font-size:clamp(1.6rem,5vw,2.6rem);font-style:italic;color:var(--gold);margin-top:-.2em;letter-spacing:.3em;padding-left:.3em}
+.milestone h2{font-style:italic;font-weight:400;max-width:20ch;margin-inline:auto;color:var(--gold-hi)}
+.body{max-width:38rem;margin:0 auto;color:var(--ivory)}
+.pillars{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem 0;margin:2.4rem auto 0;max-width:40rem;font-style:italic;font-size:1.3rem;color:var(--gold)}
+.pillars li+li::before{content:"◆";font-style:normal;font-size:.5rem;vertical-align:middle;margin:0 1rem;color:var(--gold-deep)}
+
+/* 3. Names */
+.names{background:var(--ink)}
+.arch{position:relative;width:min(500px,94vw);margin:0 auto -3.2rem;padding:9px 9px 0;border:1px solid var(--gold-deep);border-bottom:0;border-radius:999px 999px 0 0}
+.arch img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 40%;border-radius:999px 999px 0 0}
+.arch::after{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;background:linear-gradient(to top,var(--ink) 6%,rgba(20,7,12,.6) 40%,transparent);pointer-events:none}
+.small{position:relative;z-index:1;font-style:italic;color:var(--gold);margin-bottom:.4rem}
+.couple{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:.1rem;font-size:clamp(2.2rem,8vw,4.8rem);font-weight:500}
+.couple .gold{padding:0 .1em .08em}
+.couple .amp{font-style:italic;font-weight:400;font-size:.6em;color:var(--gold-deep)}
+
+/* 4. Message */
+.message{background:linear-gradient(var(--ink),var(--wine) 55%,var(--ink))}
+.split{width:min(1240px,100% - 1.5rem);display:grid;gap:2.5rem;align-items:center}
+.frame{position:relative;width:min(600px,96vw);margin-inline:auto}
+.frame img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 35%;-webkit-mask-image:radial-gradient(ellipse 74% 72% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 74% 72% at 50% 50%,#000 58%,transparent 100%)}
+.text{text-align:center}
+.text h2{font-style:italic;font-weight:400;color:var(--gold-hi);margin-bottom:1.4rem}
+.text p{max-width:34rem;margin:0 auto 1.1rem}
+@media(min-width:860px){
+  .split{grid-template-columns:6fr 5fr;gap:3rem}
+  .text{text-align:left}
+  .text p{margin-inline:0}
+}
+
+/* 5-7. Details */
+.details{background:var(--ink)}
+.card{margin-top:2rem;padding:clamp(1.8rem,5vw,3.4rem);border:1px solid var(--gold-deep);outline:1px solid rgba(230,207,160,.25);outline-offset:7px;background:linear-gradient(160deg,rgba(58,16,32,.65),rgba(20,7,12,.8))}
+dl{display:grid;gap:2rem 3rem}
+dt{font-style:italic;color:var(--gold);font-size:1.1rem;margin-bottom:.2rem}
+dd{font-size:clamp(1.4rem,3.6vw,1.9rem);line-height:1.35}
+address{font-style:normal}
+@media(min-width:720px){dl{grid-template-columns:1fr 1fr}}
+.actions{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2.8rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.7rem 2.2rem;font-family:var(--sans);font-size:.95rem;letter-spacing:.12em;text-decoration:none;border:1px solid var(--gold);transition:background .3s,color .3s,transform .3s}
+.btn.primary{background:linear-gradient(110deg,var(--gold-deep),var(--gold-hi) 50%,var(--gold-deep));background-size:200% 100%;color:var(--ink);font-weight:400}
+.btn.primary:hover{background-position:100% 0;transform:translateY(-2px)}
+.btn.ghost{color:var(--gold)}
+.btn.ghost:hover{background:var(--gold);color:var(--ink);transform:translateY(-2px)}
+.actions .btn{flex:1 1 220px;max-width:320px}
+
+/* Gallery */
+.gallery{background:linear-gradient(var(--ink),var(--wine));padding-bottom:clamp(3rem,8vw,6rem)}
+.gallery .wrap{width:min(1320px,100% - 1rem);display:grid;gap:1.6rem;align-items:end}
+.gallery figure{padding:0;border:0}
+.gallery img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:radial-gradient(ellipse 76% 74% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 76% 74% at 50% 50%,#000 60%,transparent 100%)}
+.gallery .wide img{aspect-ratio:4/3}
+.gallery .tall img{aspect-ratio:4/5.4}
+@media(min-width:820px){.gallery .wrap{grid-template-columns:7fr 5fr;gap:2.4rem}}
+
+/* 8. Closing */
+.closing{position:relative;overflow:hidden;text-align:center;padding:clamp(5rem,12vw,9rem) 0 4rem;background:radial-gradient(ellipse at 50% 50%,var(--wine-2),var(--ink) 75%)}
+.closing .mandala{opacity:.14}
+.closing .wrap{position:relative;z-index:1}
+.closing h2{font-size:clamp(3rem,10vw,6rem);font-style:italic;font-weight:400;padding:0 .1em .1em}
+.closing p{max-width:32rem;margin-inline:auto}
+.closing .sign{font-size:clamp(1.5rem,4vw,2.1rem);color:var(--gold-hi);margin-top:.6rem}
+.closing .foot{margin-top:1.4rem;font-family:var(--sans);font-weight:300;font-size:.85rem;letter-spacing:.18em;color:var(--muted)}
+
+/* gentle scroll reveal (only when JS is on) */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity 1s ease,transform 1s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .gold,.spin,.cue{animation:none}
+  .seq{animation:none;opacity:1}
+  .js .reveal{opacity:1;transform:none;transition:none}
+}
+
+/* music button */
+.music{position:fixed;right:max(1rem,env(safe-area-inset-right));bottom:max(1rem,env(safe-area-inset-bottom));z-index:20;display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.5rem 1.1rem;font-family:var(--sans);font-size:.85rem;letter-spacing:.12em;color:var(--gold);background:rgba(20,7,12,.85);border:1px solid var(--gold-deep);border-radius:999px;cursor:pointer;backdrop-filter:blur(6px);transition:background .3s,color .3s}
+.music[hidden]{display:none}
+.music:hover{background:var(--gold);color:var(--ink)}
+.music .i-pause{display:none}
+.music[aria-pressed="true"] .i-play{display:none}
+.music[aria-pressed="true"] .i-pause{display:block}
+
+.yt{position:fixed;left:-300px;bottom:0;width:200px;height:200px;opacity:0;pointer-events:none}
+
+/* ===== Extras: script type, light rays, sparkles, 3D details ===== */
+.welcome h1,.closing h2{font-family:"Great Vibes","Snell Roundhand","Apple Chancery",cursive;font-style:normal;font-weight:400;line-height:1.15;padding-bottom:.18em}
+.welcome h1{font-size:clamp(4.2rem,17vw,10rem)}
+.closing h2{font-size:clamp(3.8rem,14vw,7.5rem)}
+
+.glow{position:absolute;inset:-30%;pointer-events:none;background:conic-gradient(from 0deg at 50% 40%,transparent 0,rgba(255,240,200,.09) 6%,transparent 14%,rgba(240,205,140,.07) 26%,transparent 36%,rgba(255,240,200,.09) 50%,transparent 60%,rgba(240,205,140,.07) 74%,transparent 86%,rgba(255,240,200,.08) 94%,transparent 100%);-webkit-mask-image:radial-gradient(circle at 50% 40%,#000 0,transparent 62%);mask-image:radial-gradient(circle at 50% 40%,#000 0,transparent 62%);animation:turn 120s linear infinite}
+@keyframes turn{to{transform:rotate(360deg)}}
+.sparkles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.sparkles span{position:absolute;border-radius:50%;background:radial-gradient(circle,#fff8e0 0,#f0d9a0 35%,transparent 70%);opacity:0;animation:twinkle var(--t,5s) ease-in-out var(--d,0s) infinite}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:.9;transform:scale(1)}}
+
+/* 3D "25": stacked gold layers that sway in space */
+.big25{perspective:1100px}
+.num3d{position:relative;display:inline-block;transform-style:preserve-3d;animation:sway 9s ease-in-out infinite alternate}
+.num3d>span{display:block;font-size:clamp(9rem,34vw,18rem);font-weight:500;line-height:.85;padding:.05em .1em}
+.num3d .layer{position:absolute;left:0;top:0;width:100%;text-align:center;color:var(--c);-webkit-text-fill-color:var(--c)}
+@keyframes sway{from{transform:rotateY(-24deg) rotateX(6deg)}to{transform:rotateY(24deg) rotateX(-4deg)}}
+
+/* 3D interlocked wedding rings */
+.rings{position:relative;height:230px;margin:3.2rem auto 0;display:flex;justify-content:center;align-items:center;perspective:900px}
+.rings::before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(246,232,198,.16),transparent 65%)}
+.rings-in{position:relative;width:0;height:0;transform-style:preserve-3d;animation:ringspin 18s linear infinite}
+@keyframes ringspin{from{transform:rotateX(-24deg) rotateY(0)}to{transform:rotateX(-24deg) rotateY(360deg)}}
+.ring{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.ring.a{transform:translateX(-33px)}
+.ring.b{transform:translateX(33px) rotateX(90deg)}
+.ring i{position:absolute;display:block}
+
+/* raised, pressable buttons and lifted frames */
+.btn{box-shadow:0 4px 0 rgba(122,90,38,.9),0 12px 26px rgba(0,0,0,.45)}
+.btn.ghost{box-shadow:0 4px 0 rgba(184,147,90,.35),0 12px 26px rgba(0,0,0,.4)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(122,90,38,.9),0 4px 10px rgba(0,0,0,.4)}
+.card{box-shadow:0 34px 70px rgba(0,0,0,.55),0 0 60px rgba(230,190,120,.08)}
+.arch{filter:drop-shadow(0 0 26px rgba(230,190,120,.18))}
+.frame,.gallery figure{filter:drop-shadow(0 18px 34px rgba(0,0,0,.5))}
+.arch,.frame,.card,.gallery figure{transition:transform .25s ease-out;will-change:transform}
+
+@media(prefers-reduced-motion:reduce){.glow,.sparkles span,.num3d,.rings-in{animation:none}.sparkles{display:none}.rings-in{transform:rotateX(-24deg) rotateY(25deg)}}
